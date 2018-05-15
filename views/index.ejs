@@ -1,0 +1,52 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include layouts/header.ejs %>	
+<p>
+		<h3>1. Database System</h3>
+
+		<p>- Design a multi tenant MYSQL database system where there will be 20,000 different databases in one MYSQL Server. Your design should focus on shema, tables, memory and disk capcity recommendation, processor capacity/speed, operating system consideration, etc.</p>
+		
+		<p>- Install MYSQL server in on the system given to you. Create a database (call it database1) and create all its tables (details of the tables willl be given to you).</p>
+		
+		<p>- Implement a web-based solution which can automatically create other databases (database2, database3, …….. database20,000) by making a copy of database1. The web solution will have the field where name of the database to be created can be entered (we can enter database2 for example) and a botton to create the new database, once you hit on CREATE botton then a copy of database1 should be made and the created as database2 (or the db name provided) with all the tables and properties of database1 present.</p>
+		
+		<p>- It should be possible to manually create any database and tables different from that of database1 or tables of database1</p>
+		
+		<p>- Develop an API that a developer can call and it will read data from any specified table in any of the databases, the caller of the API will only supply database name and table name as inputs.</p>
+		
+		<p>- Develop an API a developer can call for inserting data into any of the tables in any of the databases, the caller of the API will supply database name and table name as inputs, then your API will ask for the table colum and row to be updated, the caller of the API will provide the information and your API will act accordingly.</p>
+		
+		<p>- Develop an API that a developer can call and it will read data from any specified table in any of the databases, the caller of the API will only supply database name and table name as inputs.</p>
+		
+		<p>- Develop an API that a developer can call and it will show the disk usage and memory usage of each of the databases when compared to the total hardisk space and total system memory capacity of the machine.</p>
+		
+		<p>- Develop a script that can install mysql database server on any remote or local machine, after the installation of the database server, the script will also be able to copy database from another machine and recreate it/paste it on the newly created/installed database server. </p>
+		</p>
+		<p>
+				<h3>2. Develop a Script/Solution to Integrate TransferTo API and Pay724 API	</h3>
+			
+		
+		<p>- method_msisdn_info: Integrate this method using API provided by TransferTo. Look at table method_msisdn_info in db doc, whenever data for the yellow highlighted colum is inserted into this table (it can be inserted by an external system or an admin), you should automatically process the request via the API, then you should update the columns highlighted in blue and green in the table. Your script should always run continuously at the interval specified in table time_interval2 (please note that values in this table can change so you should always check it). Each time your script runs, you need to check new inputs from table method_msisdn_info and process them. In table method_msisdn_info_YN, parameters that are mandatory are marked Y (always check this table at each run of the script because the data can change). Consider this method for prepaid electricity, viber out, gift, mobile topup, prepaid bundle and dollar phone.</p>
+		
+		<p>- method_topup: Integrate this method using API provided by TransferTo. Look at table method_topup in db doc, whenever data for the yellow highlighted colum is inserted into this table (it can be inserted by an external system or an admin), you should automatically process the request via the API, then you should update the columns highlighted in blue and green in the table. Your script should always run continuously at the interval specified in table time_interval2 (please note that values in this table can change so you should always check it). Each time your script runs, you need to check new inputs from table method_topup and process them. In table method_topup_YN, parameters that are mandatory are marked Y (always check this table at each run of the script because the data can change). Consider this method for prepaid electricity, viber out, gift, mobile topup, prepaid bundle and dollar phone.</p>
+		
+		<p>- pay724: Integrate the API provided, you will focus on check (  ) and pay (  ). Inputs (yellow highlighted part of table 724) will be supplied to table pay724 by an external system or by an admin, you should process the inputs and feedback by updating the table, if is a check request and the check is successful then you should write 0 in column check_status, if check is not successful then write 1 in column check_status. If is a pay request and the pay is successful then you should write 0 in column pay_status, if pay is not successful then write 1 in column pay_status. Your script should always run continuously at the interval specified in table time_interval2 (please note that values in this table can change so you should always check it). Each time your script runs, you need to check new inputs from table 724 and process them. </p>
+		</p>
+		<p>
+			<h3>3. Location Detection of  IP Address Accessing the Website	</h3>
+		
+		<p>- Integration of API via https://db-ip.com/api/ . This will detect location of users through their IP addresses. Call this too1_a</p>
+		
+		<p>- Integration of another API via  https://ipfind.co/docs/. This will detect location of users through their IP addresses. Call this tool_b</p>
+		
+		<p>- Develop a logic for table ip_tool_data, this logic will be performing a switching function, remember that tool_a is for db-ip.com API while tool_b is for ipfind.co API. In the table ip_tool_data if tool_a has value 3 for example and tool_b has value 15 it means you should use db-ip.com API 3 times to treat requests of location detection and after that you rotate to ipfind.co API and use it 15 times, note that values for tool_a and tool_b can change so you should always look at this table each time you are treating request.</p>
+		
+		<p>- Develop a script that automatically update table ip_dropbox. Whenever reference_id and ip address are inserted into the table, your script should automatically proecess the request and get the country and city of the ip address, once you get the country and the city, enter them under columns country and city in the table. Your script should run continuously every 1 second and should process new data entry automatically.</p>
+		
+		<p>- Develop a html API that can be called by a developer and it will insert data in table ip_dropbox. Develop another API that can be called and it will read data from table ip_dropbox.</p>
+		</p>
+<!--
+including footer content which is common for all pages
+-->
+<%- include layouts/footer.ejs %>

@@ -1,0 +1,66 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>	
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+<form action="/users/add" method="post" name="form1">
+	<table width="25%" border="0">
+		<tr> 
+			<td>quantity</td>
+			<td><input type="text" name="quantity" id="quantity" value="<%= quantity %>" /></td>
+		</tr>
+		<tr> 
+			<td>first_name</td>
+			<td><input type="text" name="first_name" value="<%= first_name %>" /></td>
+		</tr>
+		<tr> 
+			<td>last_name</td>
+			<td><input type="text" name="last_name" value="<%= last_name %>" /></td>
+		</tr>
+		<tr> 
+			<td>email_address</td>
+			<td><input type="text" name="email_address" id="email_address" value="<%= email_address %>" /></td>
+		</tr>
+		<tr> 
+			<td>mobile_number</td>
+			<td><input type="text" name="mobile_number" value="<%= mobile_number %>" /></td>
+		</tr>
+		<tr> 
+			<td>street_address1</td>
+			<td><input type="text" name="street_address1" value="<%= street_address1 %>" /></td>
+		</tr>
+		<tr> 
+			<td>street_address2</td>
+			<td><input type="text" name="street_address2" id="street_address2" value="<%= street_address2 %>" /></td>
+		</tr>
+		<tr> 
+			<td>state_city</td>
+			<td><input type="text" name="state_city" value="<%= state_city %>" /></td>
+		</tr>
+		<tr> 
+			<td>date_deliverty</td>
+			<td><input type="text" name="date_deliverty" value="<%= date_deliverty %>" /></td>
+		</tr>
+		<tr> 
+			<td>message</td>
+			<td><input type="text" name="message" value="<%= message %>" /></td>
+		</tr>
+		<tr> 
+			<td></td>
+			<td><input type="submit" name="Submit" value="Add" /></td>
+		</tr>
+	</table>
+</form>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
