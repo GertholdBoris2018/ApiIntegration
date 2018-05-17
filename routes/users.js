@@ -43,12 +43,30 @@ app.get('/add', function(req, res, next){
 
 // ADD NEW USER POST ACTION
 app.post('/add', function(req, res, next){	
-	req.assert('first_name', 'FirstName is required').notEmpty()           //Validate fist name 
-	req.assert('last_name', 'LastName is required').notEmpty()             //Validate last name 
+	req.assert('quantity', 'quantity is required').notEmpty()           //Validate fist name 
+	req.assert('first_name', 'First name is required').notEmpty()             //Validate last name 
     req.assert('email_address', 'A valid email is required').isEmail()  //Validate email address
+	req.assert('last_name', 'Last name is required').notEmpty()           //Validate fist name 
+	req.assert('mobile_number', 'Mobile Phone is required').notEmpty()    
+	req.assert('street_address1', 'street_address1 is required').notEmpty()           //Validate fist name 
+	req.assert('street_address2', 'street_address2 is required').notEmpty()    
+	req.assert('state_city', 'state_city is required').notEmpty()           //Validate fist name    
+	req.assert('date_deliverty', 'date_deliverty is required').notEmpty()           //Validate fist name 
+	req.assert('message', 'message is required').notEmpty()   
 
     var errors = req.validationErrors()
-    
+    var user = {
+		quantity: req.sanitize('quantity').escape().trim(),
+		first_name: req.sanitize('first_name').escape().trim(),
+		last_name: req.sanitize('last_name').escape().trim(),
+		email_address: req.sanitize('email_address').escape().trim(),
+		mobile_number: req.sanitize('mobile_number').escape().trim(),
+		street_address1: req.sanitize('street_address1').escape().trim(),
+		street_address2: req.sanitize('street_address2').escape().trim(),
+		state_city: req.sanitize('state_city').escape().trim(),
+		date_deliverty: req.sanitize('date_deliverty').escape().trim(),
+		message: req.sanitize('message').escape().trim()
+	}
     if( !errors ) {   //No errors were found.  Passed Validation!
 		
 		/********************************************
@@ -60,18 +78,7 @@ app.post('/add', function(req, res, next){
 		req.sanitize('comment').escape(); // returns 'a &lt;span&gt;comment&lt;/span&gt;'
 		req.sanitize('username').trim(); // returns 'a user'
 		********************************************/
-		var user = {
-			quantity: req.sanitize('quantity').escape().trim(),
-			first_name: req.sanitize('first_name').escape().trim(),
-			last_name: req.sanitize('last_name').escape().trim(),
-			email_address: req.sanitize('email_address').escape().trim(),
-			mobile_number: req.sanitize('mobile_number').escape().trim(),
-			street_address1: req.sanitize('street_address1').escape().trim(),
-			street_address2: req.sanitize('street_address2').escape().trim(),
-			state_city: req.sanitize('state_city').escape().trim(),
-			date_deliverty: req.sanitize('date_deliverty').escape().trim(),
-			message: req.sanitize('message').escape().trim()
-		}
+		
 		
 		req.getConnection(function(error, conn) {
 			conn.query('INSERT INTO table1 SET ?', user, function(err, result) {

@@ -1,0 +1,56 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>	
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+<form id="uploadForm" enctype="multipart/form-data" action="upload" method="post" onsubmit="return validateForm();">
+    <input type="hidden" id="selecteddb" name = "selecteddb"  value="<%= selecteddb %>" />
+	<table width="25%" border="0">
+		<tr> 
+			<td>Select Database</td>
+			<td>
+                <select id='database' name='database' onchange='onchangeddb(this.value);'>
+                    <option value=''>select the database</option>
+                    <%
+                    var options = [ "1", "5", "10", "50", "75", "100" ];
+                    for ( var i = 0; i < databases.length; i++ )
+                    {
+                        
+                        %><option value="<%=databases[ i ].name %>"><%=databases[ i ].name %></option><%
+                    }
+                    %>
+                </selecct>
+            </td>
+		</tr>
+		<tr> 
+			<td>Upload</td>
+			<td><input type="file" name="file" /></td>
+        </tr>
+        <tr> 
+			<td></td>
+			<td><input type="submit" value="Upload" name="submit"></td>
+		</tr>
+	</table>
+</form>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
+<script>
+    function onchangeddb(val){
+        $("#selecteddb").val(val);
+    }
+    function validateForm(){
+        if($("#selecteddb").val() == '') {alert('please select database!');return false;}
+        else return true;
+    }
+</script>

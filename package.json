@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node app.js"
+    "start": "node app.js"
   },
   "keywords": [
     "node",
@@ -17,13 +17,18 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
+    "dateformat": "^3.0.3",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "express-flash": "0.0.2",
     "express-myconnection": "^1.0.4",
     "express-session": "^1.15.3",
     "express-validator": "^3.2.0",
+    "fs": "0.0.1-security",
     "method-override": "^2.3.9",
-    "mysql": "^2.13.0"
+    "multer": "^1.1.0",
+    "mysql": "^2.13.0",
+    "util": "^0.10.3",
+    "xlsx": "^0.12.12"
   }
 }
